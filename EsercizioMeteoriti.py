@@ -40,18 +40,20 @@ plt.ylabel("Frequenza")
 plt.title("Distribuzione delle Masse dei Meteoriti")
 plt.grid(axis='y', alpha=0.75)
 plt.show()
-parziale1 = 0
-for elem in lat:
-     parziale1 = parziale1 + elem
-mediaLat = parziale1 / len(lat)
-parziale2 = 0
-for elem in lon:
-     parziale2 = parziale2 + elem
-mediaLon = parziale2 / len(lon)
 
-m = folium.Map(location=(mediaLat, mediaLon), zoom_start=5)
+#Lavoro per mappa (non funziona)
+#parziale1 = 0
+#for elem in lat:
+#     parziale1 = parziale1 + elem
+#mediaLat = parziale1 / len(lat)
+#parziale2 = 0
+#for elem in lon:
+#     parziale2 = parziale2 + elem
+#mediaLon = parziale2 / len(lon)#
 
-for elem in oggetto:
-     folium.Marker(location=[elem["lat"], elem["long"]], popup=elem["name"], icon=folium.Icon(icon="star", color="darkblue", icon_color="gold")).add_to(m)
+#m = folium.Map(location=(15.23, 20.002), zoom_start=5)
 
-m.save("meteoriti.html")
+#for elem in oggetto:
+#     folium.Marker(location=[elem["lat"], elem["long"]], popup=elem["name"], icon=folium.Icon(icon="star", color="darkblue", icon_color="gold")).add_to(m)
+
+#m.save("meteoriti.html")
