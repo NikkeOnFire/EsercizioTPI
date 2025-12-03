@@ -9,10 +9,14 @@ with open(nome_file, "r", encoding="utf8") as file:
 oggetto = json.loads(stringa_json)
 massa = []
 anni = []
+lon = []
+lat = []
 for elem in oggetto:
         try:
-              massa.append(elem["mass"])
-              anni.append(elem["year"])
+            massa.append(elem["mass"])
+            anni.append(elem["year"])
+            lon.append(elem["long"])
+            lat.append(elem["lat"])
         except:
                continue
 #Numero meteoriti caduti
@@ -36,6 +40,18 @@ plt.ylabel("Frequenza")
 plt.title("Distribuzione delle Masse dei Meteoriti")
 plt.grid(axis='y', alpha=0.75)
 plt.show()
+parziale1 = 0
+for elem in lat:
+     parziale1 = parziale1 + elem
+mediaLat = parziale1 / len(lat)
+parziale2 = 0
+for elem in lon:
+     parziale2 = parziale2 + elem
+mediaLon = parziale2 / len(lon)
 
+m = folium.Map(location=(mediaLat, mediaLon), zoom_start=5)
 
+for elem in oggetto:
+     folium.Marker(location=[elem["lat"], elem["long"]], popup=elem["name"], icon=folium.Icon(icon="star", color="darkblue", icon_color="gold")).add_to(m)
 
+m.save("meteoriti.html")
